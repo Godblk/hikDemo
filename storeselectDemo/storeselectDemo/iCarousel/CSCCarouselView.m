@@ -19,6 +19,7 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIPanGestureRecognizer *itemPangesture;
 @property (nonatomic, strong) NSMutableArray<UIView *> *itemViews;
+@property (nonatomic, strong) NSMutableDictionary *itemViewsPool;
 @end
 
 @implementation CSCCarouselView
@@ -33,7 +34,7 @@ UIGestureRecognizerDelegate
 
 - (void)setup {
     _itemViews = [NSMutableArray array];
-    
+    _itemViewsPool = [NSMutableDictionary new];
     _contentView = [[UIView alloc] initWithFrame:self.bounds];
     _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     //add tap gesture recogniser
@@ -63,7 +64,6 @@ UIGestureRecognizerDelegate
         [self transformItemViews];
         [self depthSortViews];
     }
-    
 }
 
 - (void)removeItemAtIndex:(NSInteger)index animated:(BOOL)animated {
@@ -101,7 +101,7 @@ UIGestureRecognizerDelegate
     }else if (index == _itemViews.count -2){
         offsetX = _itemWidth/4;
     }else {
-        offsetX = (CGFloat)(index+1)/(CGFloat)(_itemViews.count -1)*_itemWidth/4;
+        offsetX = (CGFloat)(index)/(CGFloat)(_itemViews.count -2)*_itemWidth/4;
     }
     view.superview.transform = CGAffineTransformMakeTranslation(offsetX, 0);
 }
@@ -132,6 +132,7 @@ UIGestureRecognizerDelegate
     }
     [self focusViewAtIndex:_itemViews.count -1];
 }
+
 
 - (UIView *)wrapView:(UIView *)view {
     UIView *containerView = [[UIView alloc] initWithFrame:view.frame];

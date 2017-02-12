@@ -32,5 +32,5 @@ typedef NS_ENUM(NSInteger, CSCCarouselViewState)
 
 - (void)insertItemAtIndex:(NSInteger)index animated:(BOOL)animated;
 - (void)removeItemAtIndex:(NSInteger)index animated:(BOOL)animated;
-- (void)removeAllItemsAnimated:(BOOL)animated;
+
 @end
