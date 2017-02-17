@@ -159,8 +159,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reloadItemAtIndex:(NSInteger)index animated:(BOOL)animated;
 
 - (void)reloadData;
-- (void)offsetLastView;
-- (void)offsetSecondView;
+
 @end
 
 
@@ -191,9 +190,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)carousel:(iCarousel *)carousel shouldSelectItemAtIndex:(NSInteger)index;
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index;
-- (void)carousel:(iCarousel *)carousel willDeleteItemAtIndex:(NSInteger)index;
-- (void)carouselWillDeleteAllItem:(iCarousel *)carousel;
-- (void)carouselWillEndAnimation:(iCarousel *)carousel;
 
 - (CGFloat)carouselItemWidth:(iCarousel *)carousel;
 - (CATransform3D)carousel:(iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform;

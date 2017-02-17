@@ -19,7 +19,8 @@
 		2468B4231E4DA6D0007A9776 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2468B4151E4DA6D0007A9776 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		2468B4241E4DA6D0007A9776 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2468B4171E4DA6D0007A9776 /* View+MASAdditions.m */; };
 		2468B4251E4DA6D0007A9776 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2468B41A1E4DA6D0007A9776 /* ViewController+MASAdditions.m */; };
-		2468B4281E4DA752007A9776 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2468B4271E4DA752007A9776 /* iCarousel.m */; };
+		249C1C561E56E334004CEB10 /* CSCCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 249C1C551E56E334004CEB10 /* CSCCarouselView.m */; };
+		249C1C5C1E56E8EC004CEB10 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 249C1C5B1E56E8EC004CEB10 /* iCarousel.m */; };
 		24B5F4231E49D39300530D47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B5F4221E49D39300530D47 /* main.m */; };
 		24B5F4261E49D39300530D47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B5F4251E49D39300530D47 /* AppDelegate.m */; };
 		24B5F4291E49D39300530D47 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B5F4281E49D39300530D47 /* ViewController.m */; };
@@ -27,7 +28,6 @@
 		24B5F42E1E49D39300530D47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24B5F42D1E49D39300530D47 /* Assets.xcassets */; };
 		24B5F4311E49D39300530D47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B5F42F1E49D39300530D47 /* LaunchScreen.storyboard */; };
 		24B5F43C1E49D39400530D47 /* storeselectDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B5F43B1E49D39400530D47 /* storeselectDemoTests.m */; };
-		9FD644C11E4DF25700CDE625 /* CSCCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD644C01E4DF25700CDE625 /* CSCCarouselView.m */; };
 		9FD644C41E4E0A4000CDE625 /* CSCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD644C31E4E0A4000CDE625 /* CSCViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -70,8 +70,10 @@
 		2468B4181E4DA6D0007A9776 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		2468B4191E4DA6D0007A9776 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		2468B41A1E4DA6D0007A9776 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		2468B4261E4DA752007A9776 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		2468B4271E4DA752007A9776 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		249C1C541E56E334004CEB10 /* CSCCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCCarouselView.h; sourceTree = "<group>"; };
+		249C1C551E56E334004CEB10 /* CSCCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCCarouselView.m; sourceTree = "<group>"; };
+		249C1C5A1E56E8EC004CEB10 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		249C1C5B1E56E8EC004CEB10 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		24B5F41E1E49D39300530D47 /* storeselectDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storeselectDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B5F4221E49D39300530D47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		24B5F4241E49D39300530D47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -85,8 +87,6 @@
 		24B5F4371E49D39400530D47 /* storeselectDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = storeselectDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B5F43B1E49D39400530D47 /* storeselectDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = storeselectDemoTests.m; sourceTree = "<group>"; };
 		24B5F43D1E49D39400530D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9FD644BF1E4DF25700CDE625 /* CSCCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCCarouselView.h; sourceTree = "<group>"; };
-		9FD644C01E4DF25700CDE625 /* CSCCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCCarouselView.m; sourceTree = "<group>"; };
 		9FD644C21E4E0A4000CDE625 /* CSCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCViewController.h; sourceTree = "<group>"; };
 		9FD644C31E4E0A4000CDE625 /* CSCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,10 +202,10 @@
 		24B5F4461E49D3B800530D47 /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
-				2468B4261E4DA752007A9776 /* iCarousel.h */,
-				2468B4271E4DA752007A9776 /* iCarousel.m */,
-				9FD644BF1E4DF25700CDE625 /* CSCCarouselView.h */,
-				9FD644C01E4DF25700CDE625 /* CSCCarouselView.m */,
+				249C1C5A1E56E8EC004CEB10 /* iCarousel.h */,
+				249C1C5B1E56E8EC004CEB10 /* iCarousel.m */,
+				249C1C541E56E334004CEB10 /* CSCCarouselView.h */,
+				249C1C551E56E334004CEB10 /* CSCCarouselView.m */,
 			);
 			path = iCarousel;
 			sourceTree = "<group>";
@@ -259,8 +259,7 @@
 				TargetAttributes = {
 					24B5F41D1E49D39300530D47 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 5X72H2L6P5;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					24B5F4361E49D39400530D47 = {
 						CreatedOnToolsVersion = 8.2;
@@ -314,12 +313,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				249C1C561E56E334004CEB10 /* CSCCarouselView.m in Sources */,
 				2468B41D1E4DA6D0007A9776 /* MASConstraint.m in Sources */,
 				2468B4201E4DA6D0007A9776 /* MASViewAttribute.m in Sources */,
 				2468B4251E4DA6D0007A9776 /* ViewController+MASAdditions.m in Sources */,
 				2468B4221E4DA6D0007A9776 /* NSArray+MASAdditions.m in Sources */,
 				2468B3FF1E4DA6B2007A9776 /* CSCGCDQueue.m in Sources */,
 				2468B4211E4DA6D0007A9776 /* MASViewConstraint.m in Sources */,
+				249C1C5C1E56E8EC004CEB10 /* iCarousel.m in Sources */,
 				2468B41F1E4DA6D0007A9776 /* MASLayoutConstraint.m in Sources */,
 				24B5F4291E49D39300530D47 /* ViewController.m in Sources */,
 				2468B4241E4DA6D0007A9776 /* View+MASAdditions.m in Sources */,
@@ -327,9 +328,7 @@
 				2468B4231E4DA6D0007A9776 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				2468B41E1E4DA6D0007A9776 /* MASConstraintMaker.m in Sources */,
 				24B5F4261E49D39300530D47 /* AppDelegate.m in Sources */,
-				2468B4281E4DA752007A9776 /* iCarousel.m in Sources */,
 				9FD644C41E4E0A4000CDE625 /* CSCViewController.m in Sources */,
-				9FD644C11E4DF25700CDE625 /* CSCCarouselView.m in Sources */,
 				24B5F4231E49D39300530D47 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,14 +464,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 琦 宋 (TRWTBPAGG3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5X72H2L6P5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 琦 宋 (TRWTBPAGG3)";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = storeselectDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hikvision.storeselectDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "af0aab5d-c0b5-4e38-a0e1-9884c8381eb1";
 			};
 			name = Debug;
 		};
@@ -481,14 +480,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 琦 宋 (TRWTBPAGG3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5X72H2L6P5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 琦 宋 (TRWTBPAGG3)";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = storeselectDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hikvision.storeselectDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "af0aab5d-c0b5-4e38-a0e1-9884c8381eb1";
 			};
 			name = Release;
 		};

@@ -10,7 +10,7 @@
 #import <objc/message.h>
 
 static const CGFloat kCarouselViewAnimateTime = 0.4;
-
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 @interface CSCCarouselView ()
 <
 UIGestureRecognizerDelegate
@@ -22,7 +22,10 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) NSMutableDictionary *itemViewsPool;
 @end
 
-@implementation CSCCarouselView
+@implementation CSCCarouselView{
+    CGFloat _foldItemsWidth;
+    CGFloat _foldItemsOffset;
+}
 
 #pragma mark ========Life cycle
 - (instancetype)init {
@@ -41,7 +44,7 @@ UIGestureRecognizerDelegate
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
     tapGesture.delegate = (id <UIGestureRecognizerDelegate>)self;
     [_contentView addGestureRecognizer:tapGesture];
-    
+    _foldItemsOffset = 0;
     _itemPangesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPanItemView:)];
     //set up accessibility
     self.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction;
@@ -130,7 +133,7 @@ UIGestureRecognizerDelegate
             [view.superview addGestureRecognizer:_itemPangesture];
         }
     }
-    [self focusViewAtIndex:_itemViews.count -1];
+    [self focusView];
 }
 
 
@@ -155,62 +158,20 @@ UIGestureRecognizerDelegate
     return index;
 }
 
-- (BOOL)viewOrSuperview:(UIView *)view implementsSelector:(SEL)selector
-{
-    if (!view || view == self.contentView)
-    {
-        return NO;
-    }
-    
-    //thanks to @mattjgalloway and @shaps for idea
-    //https://gist.github.com/mattjgalloway/6279363
-    //https://gist.github.com/shaps80/6279008
-    
-    Class viewClass = [view class];
-    while (viewClass && viewClass != [UIView class])
-    {
-        unsigned int numberOfMethods;
-        Method *methods = class_copyMethodList(viewClass, &numberOfMethods);
-        for (unsigned int i = 0; i < numberOfMethods; i++)
-        {
-            if (method_getName(methods[i]) == selector)
-            {
-                free(methods);
-                return YES;
-            }
-        }
-        if (methods) free(methods);
-        viewClass = [viewClass superclass];
-    }
-    
-    return [self viewOrSuperview:view.superview implementsSelector:selector];
-}
-
-- (id)viewOrSuperview:(UIView *)view ofClass:(Class)class
-{
-    if (!view || view == self.contentView)
-    {
-        return nil;
-    }
-    else if ([view isKindOfClass:class])
-    {
-        return view;
-    }
-    return [self viewOrSuperview:view.superview ofClass:class];
-}
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gesture shouldReceiveTouch:(UITouch *)touch {
     if ([gesture isKindOfClass:[UITapGestureRecognizer class]])
     {
         //handle tap
-        NSInteger index = [self viewOrSuperviewIndex:touch.view];
+        NSInteger index = [self viewOrSuperviewIndex:[self itemViewAtPoint:[touch locationInView:self]]];
         UIView *itemView = [self itemViewAtIndex:index];
-        if ([_contentView.subviews.lastObject isEqual:itemView.superview]) {
-            return false;
-        }
-//        if (_itemViews.count < 2 || index > _itemViews.count - 2) {
+//        if ([_contentView.subviews.lastObject isEqual:itemView.superview]) {
 //            return false;
 //        }
+        if (_itemViews.count > 2 && index >= _itemViews.count - 2) {
+            return false;
+        }else if ([_contentView.subviews.lastObject isEqual:itemView.superview]) {
+            return false;
+        }
         
     }
     return YES;
@@ -222,20 +183,27 @@ UIGestureRecognizerDelegate
     if (itemView) {
         NSInteger index = [self indexOfItemView:itemView];
         if (index == _itemViews.count - 2) {
-            if (_itemViews.count ==2) {
-                if (_delegate && [_delegate respondsToSelector:@selector(carousel:willDeleteItemAtIndex:)]) {
-                    [_delegate carousel:self willDeleteItemAtIndex:_itemViews.count-1];
-                }
-                return;
+            if (_delegate && [_delegate respondsToSelector:@selector(carousel:willDeleteItemAtIndex:)]) {
+                [_delegate carousel:self willDeleteItemAtIndex:_itemViews.count-1];
             }
-            self.userInteractionEnabled = false;
-            [UIView animateWithDuration:kCarouselViewAnimateTime animations:^{
-                _itemViews.lastObject.superview.transform = CGAffineTransformMakeTranslation(_itemWidth/4+_itemWidth, 0);
-            } completion:^(BOOL finished) {
-                self.userInteractionEnabled = YES;
-                [_contentView bringSubviewToFront:itemView.superview];
-                [self focusViewAtIndex:index];
-            }];
+//            if (_itemViews.count ==2) {
+//                if (_delegate && [_delegate respondsToSelector:@selector(carousel:willDeleteItemAtIndex:)]) {
+//                    [_delegate carousel:self willDeleteItemAtIndex:_itemViews.count-1];
+//                }
+//                return;
+//            }else {
+//                self.userInteractionEnabled = false;
+//                _foldItemsOffset = _itemWidth/3;
+//                [UIView animateWithDuration:kCarouselViewAnimateTime animations:^{
+//                    [self transformItemViews];
+//                } completion:^(BOOL finished) {
+//                    _foldItemsOffset = 0;
+//                    self.userInteractionEnabled = YES;
+//                    [_contentView bringSubviewToFront:itemView.superview];
+//                    [self focusViewAtIndex:index];
+//                }];
+//            }
+            
         }else if (index == _itemViews.count - 1) {
             self.userInteractionEnabled = false;
             [UIView animateWithDuration:kCarouselViewAnimateTime animations:^{
@@ -243,7 +211,7 @@ UIGestureRecognizerDelegate
                 itemView.superview.transform = CGAffineTransformMakeTranslation(_itemWidth, 0);
             } completion:^(BOOL finished) {
                 self.userInteractionEnabled = YES;
-                [self focusViewAtIndex:index];
+                [self focusView];
             }];
         }else {
             if (_delegate && [_delegate respondsToSelector:@selector(carouselWillDeleteAllItem:)]) {
@@ -255,8 +223,9 @@ UIGestureRecognizerDelegate
 
 - (void)didPanItemView:(UIPanGestureRecognizer *)panGesture {
     CGPoint translation = [panGesture translationInView:self];
-    if (translation.x > 20 && translation.y < 20 && _state != carouselStateDeleting) {
+    if (panGesture.state == UIGestureRecognizerStateEnded && translation.x > 20 && translation.y < 30 && _state != carouselStateDeleting) {
         _state = carouselStateDeleting;
+        [panGesture setTranslation:CGPointZero inView:self];
         [panGesture.view removeGestureRecognizer:panGesture];
         [panGesture setTranslation:CGPointZero inView:self];
         self.userInteractionEnabled = false;
@@ -292,13 +261,22 @@ UIGestureRecognizerDelegate
     return nil;
 }
 
-- (void)focusViewAtIndex:(NSInteger )index {
+- (void)focusView{
     for (UIView *view in _itemViews)
     {
-        if ([view isEqual:_itemViews[index]]) {
-            view.superview.userInteractionEnabled = YES;
+        NSInteger index = [_itemViews indexOfObject:view];
+        if (_itemViews.count > 2) {
+            if (index >= _itemViews.count-2) {
+                view.superview.userInteractionEnabled = YES;
+            }else {
+                view.superview.userInteractionEnabled = false;
+            }
         }else {
-            view.superview.userInteractionEnabled = false;
+            if (index == _itemViews.count-1) {
+                view.superview.userInteractionEnabled = YES;
+            }else {
+                view.superview.userInteractionEnabled = false;
+            }
         }
     }
 }
@@ -313,5 +291,11 @@ UIGestureRecognizerDelegate
         }
     }
     return nil;
+}
+
+#pragma mark === Setter and Getter
+- (void)setItemWidth:(CGFloat)itemWidth {
+    _itemWidth = itemWidth;
+    _foldItemsWidth = SCREEN_WIDTH-itemWidth;
 }
 @end

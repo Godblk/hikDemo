@@ -64,21 +64,19 @@ UITableViewDelegate
     self.icarousel.type = iCarouselTypeTimeMachine;
     self.icarousel.perspective = 0;
     self.icarousel.delegate = self;
-    self.icarousel.scrollEnabled = false;
     self.icarousel.dataSource = self;
-    self.icarousel.contentOffset = CGSizeMake(SCREEN_WIDTH/4, 0);
-    
-    
-    _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
-    _mainTableView.backgroundColor = [UIColor whiteColor];
-    _mainTableView.dataSource = self;
-    _mainTableView.delegate = self;
-    _mainTableView.tag = 0;
-    
-    [self.view addSubview:_mainTableView];
-    [_mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//    self.icarousel.contentOffset = CGSizeMake(-SCREEN_WIDTH/4, 0);
+    [self.view addSubview:self.icarousel];
+    [self.icarousel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    _mainTableView.userInteractionEnabled = false;
+    [CSCGCDQueue executeInMainQueue:^{
+        [self.dataArray addObject:@""];
+        [self.icarousel insertItemAtIndex:self.dataArray.count - 1 animated:YES];
+        [self.icarousel scrollToItemAtIndex:self.dataArray.count - 1 animated:YES];
+    } afterDelaySecs:0.1];
+    
     
 }
 #pragma mark - ===============Net  Working ==========
@@ -94,11 +92,11 @@ UITableViewDelegate
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
 {
     CGFloat width;
-    //    if (index == 0) {
-    //        width =  SCREEN_WIDTH;
-    //    }else {
-    width = SCREEN_WIDTH/2;
-    //    }
+//    if (index == 0) {
+//        width =  SCREEN_WIDTH;
+//    }else {
+        width = SCREEN_WIDTH/2;
+//    }
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, width, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
     tableView.backgroundColor = index % 2 == 0 ? [UIColor whiteColor] : [UIColor grayColor];
@@ -113,12 +111,7 @@ UITableViewDelegate
         return;
     }
     self.lastClickTime = [NSDate date].timeIntervalSince1970;
-    if (index == self.dataArray.count - 2) {
-        [carousel offsetSecondView];
-        
-    }else if (index == self.dataArray.count -1) {
-        [carousel offsetLastView];
-    }
+    
 }
 
 - (void)carousel:(iCarousel *)carousel willDeleteItemAtIndex:(NSInteger)index {
@@ -174,27 +167,11 @@ UITableViewDelegate
         return;
     }
     self.lastClickTime = [NSDate date].timeIntervalSince1970;
-    if (tableView.tag == 0) {
-        if (!self.icarousel.superview) {
-            
-            [self.view addSubview:self.icarousel];
-            [self.icarousel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.view);
-            }];
-            _mainTableView.userInteractionEnabled = false;
-            [CSCGCDQueue executeInMainQueue:^{
-                [self.dataArray addObject:@""];
-                [self.icarousel insertItemAtIndex:self.dataArray.count - 1 animated:YES];
-                [self.icarousel scrollToItemAtIndex:self.dataArray.count - 1 animated:YES];
-            } afterDelaySecs:0.1];
-        }
-    }else {
-        [CSCGCDQueue executeInMainQueue:^{
-            [self.dataArray addObject:@""];
-            [self.icarousel insertItemAtIndex:self.dataArray.count - 1 animated:YES];
-            [self.icarousel scrollToItemAtIndex:self.dataArray.count - 1 animated:YES];
-        } afterDelaySecs:0.1];
-    }
+    [CSCGCDQueue executeInMainQueue:^{
+        [self.dataArray addObject:@""];
+        [self.icarousel insertItemAtIndex:self.dataArray.count - 1 animated:YES];
+        [self.icarousel scrollToItemAtIndex:self.dataArray.count - 1 animated:YES];
+    } afterDelaySecs:0.1];
     
 }
 

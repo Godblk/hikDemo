@@ -53,14 +53,12 @@ UITableViewDataSource
     }else {
         width = SCREEN_WIDTH/2;
     }
-    
-    //    }
-    
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, width, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
     tableView.backgroundColor = index % 2 == 0 ? [UIColor whiteColor] : [UIColor grayColor];
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.tag = index;
+    
     return tableView;
 }
 
@@ -81,7 +79,7 @@ UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1000;
+    return 15;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,8 +100,9 @@ UITableViewDataSource
     }
     self.lastClickTime = [NSDate date].timeIntervalSince1970;
     if (tableView.tag < _itemIndex-1) {
-        [self.carouseView removeItemAtIndex:_itemIndex animated:YES];
-        _itemIndex--;
+        //        [self.carouseView removeItemAtIndex:_itemIndex animated:YES];
+        //        _itemIndex--;
+        return;
     }
     [self.carouseView insertItemAtIndex:_itemIndex animated:YES];
     _itemIndex++;
