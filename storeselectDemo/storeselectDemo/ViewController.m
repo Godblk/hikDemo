@@ -61,11 +61,12 @@ UITableViewDelegate
     _canSelectItem = YES;
     self.dataArray = [NSMutableArray array];
     self.icarousel = [iCarousel new];
-    self.icarousel.type = iCarouselTypeTimeMachine;
+    self.icarousel.type = iCarouselTypeLinear;
     self.icarousel.perspective = 0;
     self.icarousel.delegate = self;
     self.icarousel.dataSource = self;
-//    self.icarousel.contentOffset = CGSizeMake(-SCREEN_WIDTH/4, 0);
+    self.icarousel.bounces = NO;
+//    self.icarousel.contentOffset = CGSizeMake(SCREEN_WIDTH/4, 0);
     [self.view addSubview:self.icarousel];
     [self.icarousel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
