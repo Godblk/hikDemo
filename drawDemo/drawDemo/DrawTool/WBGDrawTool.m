@@ -7,8 +7,8 @@
 //
 
 #import "WBGDrawTool.h"
-#import "WBGImageEditorGestureManager.h"
-#import "WBGTextToolView.h"
+
+#define kPathColor [UIColor orangeColor]
 
 @interface WBGDrawTool ()
 @property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
@@ -51,17 +51,10 @@
     CGPoint currentDraggingPosition = [sender locationInView:_drawingView];
     
     if(sender.state == UIGestureRecognizerStateBegan) {
-        //取消所有加入文字激活状态
-        for (UIView *subView in self.editor.drawingView.subviews) {
-            if ([subView isKindOfClass:[WBGTextToolView class]]) {
-                [WBGTextToolView setInactiveTextView:(WBGTextToolView *)subView];
-            }
-        }
-        
         // 初始化一个UIBezierPath对象, 把起始点存储到UIBezierPath对象中, 用来存储所有的轨迹点
         WBGPath *path = [WBGPath pathToPoint:currentDraggingPosition pathWidth:MAX(1, 4)];
-        path.pathColor         = self.editor.colorPan.currentColor;
-        path.shape.strokeColor = self.editor.colorPan.currentColor.CGColor;
+        path.pathColor         = kPathColor;
+        path.shape.strokeColor = kPathColor.CGColor;
         [_allLineMutableArray addObject:path];
         
     }
@@ -124,7 +117,6 @@
     //滑动手势
     if (!self.panGesture) {
         self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(drawingViewDidPan:)];
-        self.panGesture.delegate = [WBGImageEditorGestureManager instance];
         self.panGesture.maximumNumberOfTouches = 1;
     }
     if (!self.panGesture.isEnabled) {
@@ -134,7 +126,6 @@
     //点击收拾
     if (!self.tapGesture) {
         self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(drawingViewDidTap:)];
-        self.tapGesture.delegate = [WBGImageEditorGestureManager instance];
         self.tapGesture.numberOfTouchesRequired = 1;
         self.tapGesture.numberOfTapsRequired = 1;
         

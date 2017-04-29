@@ -17,7 +17,7 @@
 
 - (instancetype)init
 {
-    return [WBGImageEditorViewController new];
+    return [[WBGImageEditorViewController alloc] init];
 }
 
 - (id)initWithImage:(UIImage*)image

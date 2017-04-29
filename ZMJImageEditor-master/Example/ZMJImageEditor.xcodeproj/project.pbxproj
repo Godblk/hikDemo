@@ -251,7 +251,8 @@
 				ORGANIZATIONNAME = keshiim;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 5X72H2L6P5;
+						ProvisioningStyle = Automatic;
 					};
 					6003F5AD195388D20070C39A = {
 						LastSwiftMigration = 0830;
@@ -529,14 +530,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 琦 宋 (TRWTBPAGG3)";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5X72H2L6P5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZMJImageEditor/ZMJImageEditor-Prefix.pch";
 				INFOPLIST_FILE = "ZMJImageEditor/ZMJImageEditor-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hikvision.demo.ZMJImageEditor-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.imageditor.demo.ZMJImageEditor-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "共享及行业专用描述文件";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -547,14 +549,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 琦 宋 (TRWTBPAGG3)";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5X72H2L6P5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZMJImageEditor/ZMJImageEditor-Prefix.pch";
 				INFOPLIST_FILE = "ZMJImageEditor/ZMJImageEditor-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hikvision.demo.ZMJImageEditor-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.imageditor.demo.ZMJImageEditor-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "共享及行业专用描述文件";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

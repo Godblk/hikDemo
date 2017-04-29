@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (Extension)
-
+- (nullable UIImage *)imageByResizeToSize:(CGSize)size;
 @end

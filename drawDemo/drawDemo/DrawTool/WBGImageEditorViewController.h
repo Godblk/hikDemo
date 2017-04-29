@@ -17,23 +17,16 @@ typedef NS_ENUM(NSUInteger, EditorMode) {
 
 extern NSString * const kColorPanNotificaiton;
 
-@interface WBGColorPan : UIView
-@property (nonatomic, strong, readonly) UIColor *currentColor;
-@end
-
 @interface WBGImageEditorViewController : WBGImageEditor
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UIButton *undoButton;
-
-@property (weak,   nonatomic, readonly) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic, readonly) IBOutlet UIImageView *drawingView;
-@property (weak,   nonatomic, readonly) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic, readonly) IBOutlet WBGColorPan *colorPan;
+@property (strong, nonatomic) UIButton *backButton;
+@property (strong, nonatomic) UIButton *undoButton;
+@property (strong,   nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIImageView *drawingView;
+@property (strong, nonatomic) UIScrollView *scrollView;
 
 @property (nonatomic, assign) EditorMode currentMode;
 
 - (void)resetCurrentTool;
 
-- (void)editTextAgain;
 - (void)hiddenTopAndBottomBar:(BOOL)isHide animation:(BOOL)animation;
 @end

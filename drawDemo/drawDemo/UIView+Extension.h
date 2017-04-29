@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (Extension)
-
+@property (nonatomic) CGFloat left;        ///< Shortcut for frame.origin.x.
+@property (nonatomic) CGFloat top;         ///< Shortcut for frame.origin.y
+@property (nonatomic) CGFloat width;       ///< Shortcut for frame.size.width.
+@property (nonatomic) CGFloat height;      ///< Shortcut for frame.size.height.
 @end

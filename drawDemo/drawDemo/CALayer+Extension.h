@@ -9,5 +9,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface CALayer (Extension)
-
+@property (nonatomic) CGFloat transformScaleX;       ///< key path "tranform.scale.x"
+@property (nonatomic) CGFloat transformScaleY;       ///< key path "tranform.scale.y"
 @end
