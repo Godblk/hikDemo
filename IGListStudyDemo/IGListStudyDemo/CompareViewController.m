@@ -66,9 +66,7 @@ IGListAdapterDataSource
     self.fillShapeLayer.strokeColor = [UIColor grayColor].CGColor;
     self.fillShapeLayer.fillColor   = [UIColor whiteColor].CGColor;
     self.fillShapeLayer.lineWidth   = 1.f;
-    //    self.fillShapeLayer.frame       = CGRectMake(0, kTopHeight,
-    //                                                 CGRectGetWidth(self.view.frame),
-    //                                                 CGRectGetHeight(self.view.frame)-kTopHeight);
+    
     [self.view.layer addSublayer:self.fillShapeLayer];
     [self.view addSubview:self.collectionView];
     self.adapter.collectionView = self.collectionView;
