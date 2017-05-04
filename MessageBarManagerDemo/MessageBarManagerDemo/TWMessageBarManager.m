@@ -299,7 +299,9 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
         [messageView setNeedsDisplay];
         
         UITapGestureRecognizer *gest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemSelected:)];
+        UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
         [messageView addGestureRecognizer:gest];
+        [messageView addGestureRecognizer:panGesture];
         
         if (messageView)
         {
@@ -330,6 +332,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
 
 - (void)itemSelected:(id)sender
 {
+    NSLog(@"被点击了");
     TWMessageView *messageView = nil;
     BOOL itemHit = NO;
     if ([sender isKindOfClass:[UIGestureRecognizer class]])
@@ -344,6 +347,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
     
     if (messageView && ![messageView isHit])
     {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(itemSelected:) object:messageView];
         messageView.hit = YES;
         
         [UIView animateWithDuration:kTWMessageBarManagerDismissAnimationDuration animations:^{
@@ -374,6 +378,18 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
 				self.messageWindow = nil;
             }
         }];
+    }
+}
+
+- (void)handlePan:(UIPanGestureRecognizer *)gesture {
+     CGPoint translation = [gesture translationInView:self.messageWindowView];
+    if (translation.y < 0) {
+        gesture.view.center = CGPointMake(gesture.view.center.x,gesture.view.center.y + translation.y);
+    }
+    if (translation.y<-10) {
+        NSLog(@"调用隐藏了");
+        gesture.enabled = false;
+        [self hideAllAnimated:YES];
     }
 }
 

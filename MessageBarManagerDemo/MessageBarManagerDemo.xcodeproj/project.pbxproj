@@ -214,6 +214,11 @@
 			attributes = {
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Terry Worona";
+				TargetAttributes = {
+					564982591741BF7A00077B8C = {
+						DevelopmentTeam = 5X72H2L6P5;
+					};
+				};
 			};
 			buildConfigurationList = 564982551741BF7A00077B8C /* Build configuration list for PBXProject "MessageBarManagerDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -338,10 +343,11 @@
 		5649827E1741BF7A00077B8C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 5X72H2L6P5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MessageBarManagerDemo/MessageBarManagerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MessageBarManagerDemo/MessageBarManagerDemo-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.terryworona.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.terryworona.MessageBarManagerDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -350,10 +356,11 @@
 		5649827F1741BF7A00077B8C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 5X72H2L6P5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MessageBarManagerDemo/MessageBarManagerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MessageBarManagerDemo/MessageBarManagerDemo-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.terryworona.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.terryworona.MessageBarManagerDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
