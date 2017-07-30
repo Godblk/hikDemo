@@ -12,7 +12,7 @@
 @interface ViewController ()
 <YYTextViewDelegate>
 @property (nonatomic ,assign) BOOL isEditing;
-
+@property (nonatomic ,strong) YYTextView *textView;
 @end
 
 @implementation ViewController
@@ -20,11 +20,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    YYTextView *textView = [YYTextView new];
-    textView.frame = CGRectMake(0, 100, 250, 250);
-    textView.selectable = false;
-    textView.editable = false;
-    textView.delegate = self;
+    self.textView = [YYTextView new];
+    self.textView.frame = CGRectMake(0, 100, 250, 250);
+    self.textView.selectable = false;
+    self.textView.editable = false;
+    self.textView.delegate = self;
+    self.textView.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:self.textView];
+    
+    
+    UIButton *button = [UIButton new];
+    [button setTitle:@"重置" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(resetText) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 10, 50, 50);
+    [self.view addSubview:button];
+    
+    [self resetText];
+}
+
+- (void)resetText {
     NSMutableAttributedString *text = [NSMutableAttributedString new];
     NSArray *tags = @[@"red", @"orange", @"yellow", @"grveen", @"blue", @"purple", @"gray"];
     UIFont *font = [UIFont boldSystemFontOfSize:16];
@@ -60,13 +75,11 @@
     text.yy_lineBreakMode = NSLineBreakByWordWrapping;
     [text appendAttributedString:text]; // repeat for test
     
-    textView.attributedText = text;
-    textView.backgroundColor = [UIColor grayColor];
-    [UIView animateWithDuration:0.3 animations:^{
-        textView.frame = CGRectMake(0, 100, 250, textView.textLayout.textBoundingSize.height);
-    }];
-    [self.view addSubview:textView];
+    self.textView.attributedText = text;
+    
+    self.textView.frame = CGRectMake(0, 100, 250, self.textView.textLayout.textBoundingSize.height);
 }
+
 - (BOOL)textView:(YYTextView *)textView shouldTapHighlight:(YYTextHighlight *)highlight inRange:(NSRange)characterRange{
     return YES;
 }
