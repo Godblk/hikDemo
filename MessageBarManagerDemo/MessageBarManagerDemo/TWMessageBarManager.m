@@ -386,7 +386,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
     if (translation.y < 0) {
         gesture.view.center = CGPointMake(gesture.view.center.x,gesture.view.center.y + translation.y);
     }
-    if (translation.y<-10) {
+    if (translation.y<-40) {
         NSLog(@"调用隐藏了");
         gesture.enabled = false;
         [self hideAllAnimated:YES];

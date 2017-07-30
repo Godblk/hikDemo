@@ -216,7 +216,8 @@
 				ORGANIZATIONNAME = "Terry Worona";
 				TargetAttributes = {
 					564982591741BF7A00077B8C = {
-						DevelopmentTeam = 5X72H2L6P5;
+						DevelopmentTeam = 5DHDUGG7JV;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -343,12 +344,14 @@
 		5649827E1741BF7A00077B8C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 5X72H2L6P5;
+				DEVELOPMENT_TEAM = 5DHDUGG7JV;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MessageBarManagerDemo/MessageBarManagerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MessageBarManagerDemo/MessageBarManagerDemo-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.terryworona.MessageBarManagerDemo1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hikvision.MessageBarManagerDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "989d60ef-b970-46ff-97f5-d9b7562e64a4";
+				PROVISIONING_PROFILE_SPECIFIER = "共享及行业专用描述文件";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -356,12 +359,14 @@
 		5649827F1741BF7A00077B8C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 5X72H2L6P5;
+				DEVELOPMENT_TEAM = 5DHDUGG7JV;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MessageBarManagerDemo/MessageBarManagerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MessageBarManagerDemo/MessageBarManagerDemo-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.terryworona.MessageBarManagerDemo1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hikvision.MessageBarManagerDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "989d60ef-b970-46ff-97f5-d9b7562e64a4";
+				PROVISIONING_PROFILE_SPECIFIER = "共享及行业专用描述文件";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
