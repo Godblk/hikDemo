@@ -44,6 +44,13 @@
 - (void)commonInit
 {
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectZero];
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)[UIColor redColor].CGColor,(__bridge id)[UIColor orangeColor].CGColor];
+    gradientLayer.locations = @[@0.0, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(1.0, 0);
+    gradientLayer.frame = CGRectZero;
+    [contentView.layer addSublayer:gradientLayer];
     [self addSubview:contentView];
     _contentView = contentView;
     
@@ -59,7 +66,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+    self.contentView.layer.sublayers.firstObject.frame = self.bounds;
     self.contentView.frame = self.bounds;
     
     // Position Calculation

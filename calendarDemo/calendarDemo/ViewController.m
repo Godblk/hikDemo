@@ -8,8 +8,12 @@
 #import "FSCalendar.h"
 #import "ViewController.h"
 
+static const CGFloat kHeadHeight = 50.0f;
+static const CGFloat kWeekHeight = 80.0f;
+
 @interface ViewController ()<FSCalendarDataSource,FSCalendarDelegate,FSCalendarDelegateAppearance>
 @property (weak, nonatomic) FSCalendar *calendar;
+@property (strong, nonatomic) UIView *containerView;
 @property (strong, nonatomic) NSCalendar *gregorian;
 @end
 
@@ -19,7 +23,31 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     CGFloat height = 300;
-    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, height)];
+    CGRect rect = CGRectMake(25, 64, self.view.bounds.size.width-50, height);
+    
+    
+    self.containerView = [[UIView alloc] initWithFrame:rect];
+    
+    self.containerView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.containerView.layer.shadowOffset = CGSizeMake(3, 3);
+    self.containerView.layer.shadowRadius = 3;
+    self.containerView.layer.shadowOpacity = 0.5;
+    self.containerView.clipsToBounds  =false;
+    
+    rect.origin.x = 0;
+    rect.origin.y = 0;
+    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:rect];
+    [self.view addSubview:self.containerView];
+    [self.containerView addSubview:calendar];
+    
+    UIView *buttonBack = [UIView new];
+    buttonBack.frame = CGRectMake(0, 0, self.view.bounds.size.width-50, kHeadHeight);
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, 50, kHeadHeight)];
+    [button setTitle:@"点击" forState:UIControlStateNormal];
+    [buttonBack addSubview:button];
+    [self.containerView addSubview:buttonBack];
+    
+    
     calendar.dataSource = self;
     calendar.delegate = self;
     calendar.allowsMultipleSelection = false;
@@ -27,12 +55,18 @@
     calendar.backgroundColor = [UIColor whiteColor];
     calendar.locale = [NSLocale localeWithLocaleIdentifier:@"zh-CN"];
     calendar.today = nil;
+    calendar.headerHeight = kHeadHeight;
+    calendar.weekdayHeight = kWeekHeight;
+    calendar.appearance.headerMinimumDissolvedAlpha = 0;
 //    calendar.placeholderType = FSCalendarPlaceholderTypeNone;
     calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
     calendar.appearance.headerDateFormat = @"yyyy年MM月";
-    [self.view addSubview:calendar];
     self.calendar = calendar;
     [calendar selectDate:[NSDate date]];
+    calendar.layer.cornerRadius = 10.0f;
+    calendar.layer.masksToBounds = YES;
+    calendar.layer.borderColor = [UIColor blackColor].CGColor;
+    calendar.layer.borderWidth = 1;
     
     UITapGestureRecognizer *gesture =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
     [self.calendar.calendarHeaderView addGestureRecognizer:gesture];
